@@ -1,0 +1,50 @@
+<% include partials/header %>
+<section id="contact">
+    <div class='bg-trans'>
+        <% if(error && error.length > 0)  {%>
+            <div class='alert alert-danger' role='alert'>
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0) {%>
+            <div class='alert alert-success' role='alert'>
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
+    <h2 class="text-center section-title"><%= currentUser.username %>'s Diary</h2><hr class="section-line">
+    <div class="text-center container back">
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="form" action="/diary" method="POST">
+                    <textarea placeholder="Your Message" class="form-general message" type="text" name="content"></textarea> <br>
+                    <input class="button update-btn" type="submit" id="submit" value="Update Diary">
+                </form>
+                <a class='button logout' href="/logout">Log Out</a>
+            </div>
+        </div>
+    </div>
+    <div class='container item'>
+        <% diary.slice().reverse().forEach((diary) => { %>
+            <% if(diary.user.id.equals(currentUser._id)) { %>
+                <div class="row first-row">
+                    <div class="col-sm-12 small">
+                        <div class="thumbnail content">
+                            <div class="caption">
+                                <p class='date inside-text'><%= diary.dates %></p>
+                                <p class="content-diary inside-text"><%= diary.content %></p>
+                                <form id="delete" action="/diary/<%= diary._id %>?_method=DELETE" method="POST">
+                                    <button class='button delete'>Delete</button>
+                                </form>
+                                    <a href='/diary/<%= diary._id %>/edit' class='button edit'>Edit</a>
+                                <!--<p><a href="#" class="btn btn-warning" role="button">Edit</a></p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% }); %>
+    </div>
+</section>
+
+<% include partials/footer %>

@@ -1,0 +1,26 @@
+<% include partials/header.ejs %>
+
+<div class="container index">
+    <div class='row'>
+        <div class='bg-trans'>
+            <% if(error && error.length > 0)  {%>
+                <div class='alert alert-danger' role='alert'>
+                    <%= error %>
+                </div>
+            <% } %>
+            <% if(success && success.length > 0) {%>
+                <div class='alert alert-success' role='alert'>
+                    <%= success %>
+                </div>
+            <% } %>
+        </div>
+        <div id="landing-header">
+            <h1>Your Diary</h1>
+            <a href="/login" class="btn btn-lg btn-success buttons">Old User?</a>
+            <br>
+            <a href="/register" class="btn btn-lg btn-primary buttons">New User?</a>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer.ejs %>

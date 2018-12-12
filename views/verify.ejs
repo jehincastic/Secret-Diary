@@ -1,0 +1,28 @@
+<% include partials/header %>
+
+<div class='bg-trans'>
+    <% if(error && error.length > 0)  {%>
+        <div class='alert alert-danger' role='alert'>
+            <%= error %>
+        </div>
+    <% } %>
+    <% if(success && success.length > 0) {%>
+        <div class='alert alert-success' role='alert'>
+            <%= success %>
+        </div>
+    <% } %>
+</div>
+<div class='container verify-page'>
+    <p>To continue please paste the conformation code that has been send to your Email address.</p>
+    <div style="width:40%; margin: 25px auto;">
+        <form action='/verify' method="POST">
+            <div class='form-group'>
+            <input type="text" name="verifyId" class='form-control' placeholder='Verification code'>
+            </div>
+            <button class='btn btn-lg btn-primary'>Verify</button>
+        </form>
+        <a href="/logout" class='btn btn-lg btn-warning'>Log Out</a>
+    </div>
+</div>
+
+<% include partials/footer %>
